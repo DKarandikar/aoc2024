@@ -52,9 +52,6 @@ library
       Day23
       Day24
       Day25
-      Lib
-      Utils
-      CRT
   other-modules:
       Paths_aoc2024
   hs-source-dirs:
