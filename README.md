@@ -17,3 +17,9 @@ Modify some files
 > :r
 
 > day1part1
+
+## Tests
+
+Run tests with 
+
+> stack test
