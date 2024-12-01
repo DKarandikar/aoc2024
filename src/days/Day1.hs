@@ -19,3 +19,7 @@ doDay1Part1 s = do
 
 compare :: (Int, Int) -> Int
 compare (x, y) = abs (x - y)
+
+
+doDay1Part2 :: String -> Int
+doDay1Part2 s = 1
