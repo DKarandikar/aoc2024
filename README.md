@@ -1,25 +1,19 @@
 # aoc2024
 
-A loosely tied together bundle of scripts for [advent of code 2024](adventofcode.com)
+Haskell solutions for [advent of code 2024](adventofcode.com)
 
-Infrastructure copied from my 2020 solutions for aoc
+## Running a day
 
-## Workflow
+Run a single day with the below command, for example for day 15 part 2:
 
-This repo allows for quick iteration on solving particular day problems
-
-> stack ghci
-
-> day1part1
-
-Modify some files
-
-> :r
-
-> day1part1
+```
+stack run 15.2
+```
 
 ## Tests
 
-Run tests with 
+Tests can be run with: 
 
-> stack test
+```
+stack test
+```
