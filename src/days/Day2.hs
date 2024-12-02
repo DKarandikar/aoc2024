@@ -1,5 +1,7 @@
 module Day2 where
 
+import Data.List (subsequences)
+
 type Report = [Int]
 
 data Step = Inc | Dec | Fail deriving (Eq)
@@ -8,7 +10,7 @@ day2part1 :: IO ()
 day2part1 = print . doDay2Part1 =<< readFile "input/day2.txt"
 
 day2part2 :: IO ()
-day2part2 = print $ "day2part2"
+day2part2 = print . doDay2Part2 =<< readFile "input/day2.txt"
 
 doDay2Part1 :: String -> Int
 doDay2Part1 s = sum $ map isReportValid (parseInput s)
@@ -35,3 +37,12 @@ toStep (x, y)
 window :: [Int] -> [(Int, Int)]
 window [] = []
 window xs = zip xs (tail xs)
+
+doDay2Part2 :: String -> Int
+doDay2Part2 s = sum $ map isReportValidWithRemoval (parseInput s)
+
+isReportValidWithRemoval:: Report -> Int
+isReportValidWithRemoval r = fromEnum $ any (==1) $ map isReportValid $ reportOptions r
+
+reportOptions :: Report -> [Report]
+reportOptions r = filter (\x -> length x == length r - 1) (subsequences r)

@@ -82,6 +82,7 @@ test-suite aoc2024-test
   other-modules:
       Paths_aoc2024
       Day1Spec
+      Day2Spec
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N

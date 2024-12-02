@@ -12,3 +12,7 @@ spec = do
 
     it "window handles simple example" $ do
       window [1, 2, 3, 4] `shouldBe` [(1, 2), (2, 3), (3, 4)]
+
+    it "doDay2Part2 handles simple example" $ do
+      testInput <- readFile "test/input/day2.txt"
+      doDay2Part2 testInput `shouldBe` 4
