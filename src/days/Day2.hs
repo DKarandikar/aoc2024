@@ -13,16 +13,22 @@ day2part2 :: IO ()
 day2part2 = print . doDay2Part2 =<< readFile "input/day2.txt"
 
 doDay2Part1 :: String -> Int
-doDay2Part1 s = sum $ map isReportValid (parseInput s)
+doDay2Part1 = countValidReports isReportValid
+
+doDay2Part2 :: String -> Int
+doDay2Part2 = countValidReports isReportValidWithRemoval
+
+countValidReports :: (Report -> Bool) -> String -> Int
+countValidReports fn = sum . map (fromEnum . fn) . parseInput
 
 parseInput :: String -> [Report]
-parseInput s = map parseLine (lines s)
+parseInput = map parseLine . lines
 
 parseLine :: String -> Report
-parseLine s = map (\x -> read x :: Int) (words s)
+parseLine = map (\x -> read x :: Int) . words
 
-isReportValid:: Report -> Int
-isReportValid r = fromEnum $ isStepsValid $  map toStep $ window r
+isReportValid:: Report -> Bool
+isReportValid = isStepsValid . map toStep . window
 
 isStepsValid :: [Step] -> Bool
 isStepsValid x = or [all (==Inc) x, all (==Dec) x]
@@ -33,16 +39,12 @@ toStep (x, y)
     | x < y && y - x < 4 = Dec
     | otherwise = Fail
 
-
 window :: [Int] -> [(Int, Int)]
 window [] = []
 window xs = zip xs (tail xs)
 
-doDay2Part2 :: String -> Int
-doDay2Part2 s = sum $ map isReportValidWithRemoval (parseInput s)
-
-isReportValidWithRemoval:: Report -> Int
-isReportValidWithRemoval r = fromEnum $ any (==1) $ map isReportValid $ reportOptions r
+isReportValidWithRemoval:: Report -> Bool
+isReportValidWithRemoval = any (==True) . map isReportValid . reportOptions
 
 reportOptions :: Report -> [Report]
-reportOptions r = filter (\x -> length x == length r - 1) (subsequences r)
+reportOptions r = filter (\x -> length x == length r - 1) $ subsequences r
